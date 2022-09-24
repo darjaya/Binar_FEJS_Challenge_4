@@ -72,7 +72,7 @@ function Search(props) {
         <Paper elevation={3} component="form" sx={{ p: "2px 4px", borderColor: "primary", display: "flex", alignItems: "center", width: "100%" }}>
           <InputBase
             sx={{ ml: 1, flex: 1 }}
-            placeholder="Search Your Task Here"
+            placeholder="Write Here"
             inputProps={{ "aria-label": "search" }}
             value={search}
             onChange={(e) => {

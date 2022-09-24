@@ -78,33 +78,6 @@ function AllTask(props) {
     setRefetch(true);
   };
 
-  //
-
-  const handleDeleteAll = () => {
-    Promise.all(
-      itemTask.map((id) =>
-        fetch(`https://fake-api-coba.herokuapp.com/todos/${id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res)
-          .then((data) => data.status)
-      )
-    ).then((res) => {});
-  };
-
-  //
-
-  const handleDeleteDone = async () => {
-    getAllTask(
-      itemTask.forEach((item) => {
-        if (item.complete === true) {
-          axios.delete(`https://fake-api-coba.herokuapp.com/todos/${item.id}`);
-        }
-      })
-    );
-    setRefetch(true);
-  };
-
   return (
     <div className="todo-list-app">
       <ButtonAppBar />
@@ -129,11 +102,56 @@ function AllTask(props) {
       </div>
 
       <div className="todo-group-form">
-        <TaskButton variant="contained" color={"primary"} size="large" onClick={() => handleDeleteDone}>
+        <TaskButton
+          variant="contained"
+          color={"primary"}
+          size="large"
+          onClick={() => {
+            Promise.all(
+              itemTask
+                .filter((e) => e.complete)
+                .map(async ({ id }) => {
+                  await fetch(`https://fake-api-coba.herokuapp.com/todos/${id}`, {
+                    method: "DELETE",
+                  })
+                    .then(async (response) => {
+                      return response;
+                    })
+                    .then((data) => {
+                      return data.status;
+                    });
+                })
+            ).then((response) => {
+              setRefetch(true);
+            });
+          }}
+        >
           Delete Done Task
         </TaskButton>
 
-        <TaskButton variant="contained" color={"primary"} size="large" onClick={() => handleDeleteAll}>
+        <TaskButton
+          variant="contained"
+          color={"primary"}
+          size="large"
+          onClick={(id) => {
+            setItemTask(itemTask.filter((item) => item.id !== id));
+            Promise.all(
+              itemTask.map(async ({ id }) => {
+                await fetch(`https://fake-api-coba.herokuapp.com/todos/${id}`, {
+                  method: "DELETE",
+                })
+                  .then(async (res) => {
+                    return res;
+                  })
+                  .then((data) => {
+                    return data.status;
+                  });
+              })
+            ).then((response) => {
+              setRefetch(true);
+            });
+          }}
+        >
           Delete All Task
         </TaskButton>
       </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import ButtonAppBar from "../Button/AppBar";
-import DeleteButton from "../Button/Delete";
 import Search from "../Button/Search";
 import TodoButton from "../Button/TodoButton";
 
@@ -13,11 +12,8 @@ function Home(props) {
         <Search />
       </div>
       <div className="todo-group-form">
+        <h2 className="header"> Todo List Task</h2>
         <TodoButton />
-      </div>
-
-      <div className="todo-group-form">
-        <DeleteButton />
       </div>
     </div>
   );

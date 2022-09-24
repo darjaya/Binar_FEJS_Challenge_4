@@ -11,10 +11,10 @@ import axios from "axios";
 const TaskButton = styled(Button)({
   boxShadow: "none",
   textTransform: "none",
-  fontSize: 20,
-  width: "20%",
+  fontSize: 15,
+  width: "15%",
   border: "1px solid",
-  lineHeight: 1.5,
+  lineHeight: 1,
   marginTop: 50,
   margin: 22,
   backgroundColor: "#00BFFF",
@@ -65,22 +65,22 @@ function TodoButton(props) {
       <div>
         <StyledLink to="/all-task">
           <TaskButton variant="contained" color={"primary"} size="large" startIcon={<AssignmentOutlinedIcon />} onClick={() => getAllTask}>
-            All Task
+            All
           </TaskButton>
         </StyledLink>
         <StyledLink to="/done-task">
           <TaskButton variant="contained" color={"primary"} size="large" startIcon={<AssignmentTurnedInOutlinedIcon />} onClick={AllTask}>
-            Done Task
+            Done
           </TaskButton>
         </StyledLink>
         <StyledLink to="/todo-task">
           <TaskButton variant="contained" color={"primary"} size="large" startIcon={<PlaylistAddIcon />}>
-            Todo Task
+            Todo
           </TaskButton>
         </StyledLink>
         <StyledLink to="/new-task">
           <TaskButton variant="contained" color={"primary"} size="large" startIcon={<AddIcon />}>
-            New Task
+            New
           </TaskButton>
         </StyledLink>
       </div>
